@@ -1,26 +1,28 @@
 from typing import List
+from numpy import inf
 import heapq
 
 
 class Solution:
     @staticmethod
     def minTimeToReach(moveTime: List[List[int]]) -> int:
-        q = []  # 最小堆
+        
+        q = [(0, 0, 0)]  # 最小堆
         n, m = len(moveTime), len(moveTime[0])
-        minArrival = [[float('inf')] * m for _ in range(n)]  # 维护房间的最早访问时间
-        direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]  # 上下左右四个方向
-        heapq.heappush(q, (0, 0, 0, 1))
+        minArrival = [[inf] * m for _ in range(n)]  # 维护房间的最早访问时间，出发点的值没有用到，可以不做修改
+
         while q:
-            timeArr, i, j, num = heapq.heappop(q)
-            if i == n-1 and j == m-1:
-                    return timeArr
-            for x, y in direction:
-                nx, ny = i + x, j + y
-                if -1 < nx < n and -1 < ny < m: 
-                    newArrival = max(timeArr + 2 - num % 2, moveTime[nx][ny] + 2 - num % 2)
+            timeArr, x, y = heapq.heappop(q)
+            if x == n-1 and y == m-1:
+                return timeArr
+            if timeArr > minArrival[x][y]:
+                continue
+            for nx, ny in (x + 1, y), (x, y + 1), (x - 1, y), (x, y - 1):
+                if -1 < nx < n and -1 < ny < m:
+                    newArrival = max(timeArr, moveTime[nx][ny]) + (x + y) % 2 + 1
                     if newArrival < minArrival[nx][ny]:
                         minArrival[nx][ny] = newArrival
-                        heapq.heappush(q, (minArrival[nx][ny], nx, ny, num + 1))
+                        heapq.heappush(q, (newArrival, nx, ny))
         return -1
     
 
