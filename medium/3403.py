@@ -6,8 +6,8 @@ class Solution:
         n = len(word)
         maxLen = n - numFriends + 1  # 最大串的长度
         l, maxStr = 0, ''
-        while l < n:
-            if l + maxLen <= len(word):
+        while l < n:  # 遍历左端点
+            if l + maxLen <= len(word):  # 判断右端点是否越界，实际上Python的切片操作不会引发索引越界访问，这和其他语言不同
                 maxStr = max(maxStr, word[l:l + maxLen])
             else:
                 maxStr = max(maxStr, word[l:])
