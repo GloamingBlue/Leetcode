@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 from collections import defaultdict
 
 
@@ -16,7 +16,7 @@ class Solution:
 
         memo = [None for _ in range(n)]  # 记忆化数组，存储节点的状态（0代表在栈中）以及dfs的返回值
 
-        def dfs(i: int) -> defaultdict or int:
+        def dfs(i: int) -> Union[defaultdict, int]:
             if memo[i] is not None:  # 当前节点被访问过且已经递归完成，直接返回上次递归的值；当前节点入栈且未返回（标记为0）,返回0，有环
                 return memo[i]
             memo[i] = 0  # 代表正在访问中
