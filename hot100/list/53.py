@@ -1,7 +1,7 @@
 from typing import List
 
 
-class solution:
+class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         ans = nums[0]
         s = minSub = 0
@@ -13,6 +13,6 @@ class solution:
     
 
 if __name__ == '__main__':
-    print(f'{solution().maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) = }')
-    print(f'{solution().maxSubArray([1]) = }')
-    print(f'{solution().maxSubArray([5,4,-1,7,8]) = }')
+    print(f'{Solution().maxSubArray([-2,1,-3,4,-1,2,1,-5,4]) = }')
+    print(f'{Solution().maxSubArray([1]) = }')
+    print(f'{Solution().maxSubArray([5,4,-1,7,8]) = }')
