@@ -22,7 +22,7 @@ class LRUCache:
 
 class Node:
     # 提高访问属性的速度，并节省内存
-    __slots__ = 'prev', 'next', 'key', 'value'
+    __slots__ = 'prev', 'next', 'key', 'value'  # __slots__会限制类的属性只有这四个，减少额外开销
 
     def __init__(self, key: int=0, value: int=0) -> None:
         self.key = key
